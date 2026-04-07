@@ -94,12 +94,28 @@ write-anything 的目标不是"骗过 AI 检测"，而是**写出值得读的文
 
 ## 安装
 
+### Amp / Claude Code
+
+```bash
+npx skills add https://github.com/limboinf/write-anything
+```
+
+安装后自动配置依赖。有更新时说"更新"即可升级。
+
+### OpenClaw
+
+把仓库地址告诉 AI：
+
+> 帮我安装这个 skill：https://github.com/limboinf/write-anything
+
+AI 会自动完成安装和配置。
+
+### 手动安装
+
 ```bash
 git clone --depth 1 https://github.com/limboinf/write-anything.git ~/.claude/skills/write-anything
 cd ~/.claude/skills/write-anything && pip install -r requirements.txt
 ```
-
-安装后 skill 会在每次运行时自动检查新版本。有更新时说"更新"即可升级。
 
 ### 配置（可选）
 
