@@ -8,29 +8,34 @@
 
 ```
 "写一篇头条文章"
-  → 抓热点 → 选题评分 → 框架选择 → 素材采集 → 内容增强
+  → 框架选择 → 素材采集 + 内容增强
   → 写作（真实信息锚定 + 风格注入 + 编辑锚点）
-  → SEO优化 → AI配图 → 输出 Markdown
+  → SEO优化 + 质量验证 → AI配图 → 输出 Markdown
 
 "写一篇小红书笔记"
-  → 抓热点 → 选题评分 → 框架选择（精简版）→ 素材采集
+  → 框架选择（按平台限制）→ 素材采集 + 内容增强
   → 写作（emoji 分段 + 口语化 + 话题标签）
-  → SEO优化 → 竖版配图 → 输出笔记文案 + 图片序列
+  → SEO优化 + 质量验证 → 竖版配图 → 输出笔记文案 + 图片序列
+
+"发一条 X"
+  → 框架选择 → 素材采集 + 内容增强
+  → 写作（3-6 句短推 + 单核心观点）
+  → 传播优化 → 输出推文 + 可选配图
 ```
 
 首次使用时会引导你选择平台和风格，之后每次只需一句话。生成的文章带有 2-3 个编辑锚点——花 3-5 分钟加入你自己的话，文章就会从"AI 初稿"变成"你的作品"。
 
 ## 平台差异
 
-| 维度 | 今日头条 | 小红书 |
-|------|---------|--------|
-| 标题 | ≤30 字 | ≤20 字，建议有视觉记忆点 |
-| 正文 | 800-3000 字，H2 分段 | 200-1000 字，emoji 或短段分隔 |
-| 配图 | 封面 16:9 + 内文图 | 竖版 3:4，1-9 张图片序列 |
-| SEO / 可发现性 | 标题+摘要+前 3 段 | 标题+前 2 行+话题标签 |
-| 输出 | Markdown | Markdown（口语化分段+话题标签风格） |
+| 维度 | 今日头条 | 小红书 | Twitter / X |
+|------|---------|--------|------------|
+| 标题 | ≤30 字 | ≤20 字，建议有视觉记忆点 | 无 H1，直接输出短推 |
+| 正文 | 800-3000 字，H2 分段 | 200-1000 字，emoji 或短段分隔 | 50-280 字，3-6 句短句 |
+| 配图 | 封面 16:9 + 内文图 | 竖版 3:4，1-9 张图片序列 | 最多 1 张，按需生成 |
+| SEO / 可发现性 | 标题+摘要+前 3 段 | 标题+前 2 行+话题标签 | 前 2 行+0-2 个 hashtags |
+| 输出 | Markdown | Markdown（口语化分段+话题标签风格） | Markdown（单条推文） |
 
-平台切换通过 `config.yaml` 的 `platform` 字段完成，具体参数定义见 `references/platform-profiles.yaml`。
+平台切换通过 `config.yaml` 的 `default_platform` 字段完成，具体参数定义见 `references/platform-profiles.yaml`。本次请求中明确提到的平台优先于默认设置。
 
 ## 核心能力
 
@@ -42,8 +47,8 @@
 | 内容增强 | 按框架类型自动匹配：角度发现/密度强化/细节锚定/真实体感 | `references/content-enhance.md` |
 | 文章写作 | 真实信息锚定 + 风格注入 + 编辑锚点 | `references/writing-guide.md` |
 | 发布优化 | 平台差异化：标题/摘要/关键词位置/标签/可发现性 | `references/seo-rules-*.md` |
-| 视觉 AI | 封面 + 内文配图（按平台自动切换尺寸） | `toolkit/image_gen.py` |
-| 个人风格 | 按平台存储写作偏好和范例，AI 可主动更新 | `my-style/` |
+| 视觉 AI | 封面 + 内文配图（按平台自动切换尺寸） | `scripts/image_gen.py` |
+| 信息卡 | 文本/URL/文章 → 杂志质感 HTML 信息卡 → PNG 截图 | `references/info-card-design-spec.md` |
 | 个人风格 | 按平台存储写作偏好和范例，AI 可主动更新 | `my-style/` |
 
 ## 发布（配合外部 Skill）
@@ -117,6 +122,10 @@ cp config.example.yaml config.yaml
 你：检查一下                      → 生成报告 + 质量自检
 你：发布到头条                    → 调用 toutiao-publisher skill
 你：发布到小红书                  → 调用 xhs-publish skill
+你：发一条 X / 写一条推特         → 生成单条短推
+你：做张信息卡                    → 文章/文本/URL → 杂志质感卡片
+你：今天计划 小红书:3 头条:2       → 设置每日发文目标
+你：今日进度                      → 查看文章矩阵状态
 ```
 
 ## 目录结构
@@ -127,9 +136,11 @@ write-anything/
 ├── config.example.yaml       # API 配置模板
 ├── requirements.txt
 │
-├── scripts/                  # 数据采集 + 工作流工具
+├── scripts/                  # 工作流工具
 │   ├── daily.py                # 每日内容矩阵管理
-│   └── image_gen.py            # AI 图片生成（Ark / Gemini，可指定 provider）
+│   ├── image_gen.py            # AI 图片生成（Ark / Gemini，可指定 provider）
+│   ├── screenshot.py           # HTML → PNG 截图（信息卡用）
+│   └── card_slice.py           # 信息卡拼接 / 分割
 │
 ├── references/               # Agent 按需加载
 │   ├── writing-guide.md        # 写作规范 + 质量检查规则
@@ -140,16 +151,17 @@ write-anything/
 │   ├── content-enhance.md      # 内容增强策略
 │   ├── platform-profiles.yaml  # 平台参数表（头条/小红书/Twitter）
 │   ├── platform-writing-rules.md # 平台写作差异规则
-│   ├── seo-keyword-analysis.md # WebSearch + LLM 关键词分析指南（替代 seo.py）
+│   ├── seo-keyword-analysis.md # WebSearch + LLM 关键词分析指南
 │   ├── seo-rules-toutiao.md    # 头条 SEO 规则
 │   ├── seo-rules-xiaohongshu.md # 小红书 SEO 规则
+│   ├── seo-rules-twitter.md    # Twitter SEO / 传播规则
+│   ├── info-card-design-spec.md # 信息卡设计规范
 │   ├── visual-prompts.md       # 视觉 AI 提示词规范
 │   ├── style-template.md       # 风格配置字段
 │   ├── onboard.md              # 首次设置流程
-│   └── performance-review.md        # 效果复盘流程
+│   └── performance-review.md   # 效果复盘流程
 │
-├── output/                   # 生成的文章
-├── corpus/                   # 历史语料（可选）
+├── output/                   # 生成的文章 + 信息卡
 └── my-style/                 # 个人写作风格（按平台分文件）
 ```
 
@@ -160,9 +172,9 @@ write-anything/
 ```
 Step 1  环境检查 + 加载风格 + 加载平台参数（不存在则 Onboard）
   ↓
-Step 2  框架选择（按平台限制）→ 素材采集 → 内容增强
+Step 2  框架选择（按平台限制）→ 素材采集 + 内容增强
   ↓
-Step 3  维度随机化 → 个人风格注入 → 写作（平台规则 + 编辑锚点）→ 快速自检
+Step 3  个人风格注入 → 写作（平台规则 + 编辑锚点）
   ↓
 Step 4  SEO 优化（平台差异化）→ 质量验证（Agent 按 writing-evaluation 规则评审）
   ↓
@@ -170,7 +182,7 @@ Step 5  视觉 AI（按平台切换封面/配图尺寸）
   ↓
 Step 6  预检 + 输出 Markdown
   ↓
-Step 7  写入历史 → 回复用户（含编辑建议 + 飞轮提示）
+Step 7  Daily Tracker 联动 → 回复用户（含编辑建议 + 飞轮提示）
 ```
 
 默认全自动。说"交互模式"可在选题/框架/配图处暂停确认。
