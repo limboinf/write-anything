@@ -29,11 +29,12 @@
 
 **快捷路径**：
 - 如果用户直接甩了一段描述（如"我做科技自媒体，三个平台都发，风格像虎嗅"），直接从中提取所有能提取的字段，只补问缺的
-- 如果用户说"不设置"、"用默认的"、"直接写" → 按 `{skill_dir}/references/style-template.md` 完整示例生成 `config.yaml`，跳过所有问答
+- 如果用户说"不设置"、"用默认的"、"直接写" → 以 `{skill_dir}/config.example.yaml` 为模板生成 `config.yaml`，跳过所有问答
 - 如果用户只提到一个平台 → 只配置该平台，其他平台后续按需补充
 
 ```
-参考: {skill_dir}/references/style-template.md（字段说明和完整示例）
+模板: {skill_dir}/config.example.yaml（字段说明和结构参考）
+输出: {skill_dir}/config.yaml（实际配置，不存在时需创建）
 ```
 
 ## Phase 2: 生成配置

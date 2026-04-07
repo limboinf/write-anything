@@ -157,7 +157,6 @@ write-anything/
 │   ├── seo-rules-twitter.md    # Twitter SEO / 传播规则
 │   ├── info-card-design-spec.md # 信息卡设计规范
 │   ├── visual-prompts.md       # 视觉 AI 提示词规范
-│   ├── style-template.md       # 风格配置字段
 │   ├── onboard.md              # 首次设置流程
 │   └── performance-review.md   # 效果复盘流程
 │
