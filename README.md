@@ -37,6 +37,29 @@
 
 平台切换通过 `config.yaml` 的 `default_platform` 字段完成，具体参数定义见 `references/platform-profiles.yaml`。本次请求中明确提到的平台优先于默认设置。
 
+## 信息卡：一句话把任何内容变成可分享的图片
+
+把文章、URL、或一段文字扔给它，自动提炼核心观点 → 生成杂志质感 HTML 卡片 → 截图输出 PNG。适合直接发小红书轮播或 Twitter 长图。
+
+```
+"做张信息卡"
+  → 输入文本 / URL / 刚写完的文章
+  → 提炼核心论点 + 关键数据 + 因果链
+  → 选配色（赤陶/暖炭/暖沙/橄榄/紫藤/深青）
+  → 生成封面 + 内容页 HTML（540×720，输出 1080×1440）
+  → 自动截图 → 输出 PNG 序列
+```
+
+**支持的输入**：X/Twitter 链接、微信公众号文章、arXiv 论文、任意网页 URL、纯文本、刚写完的文章（自动读取 `output/` 最新文件）。
+
+**设计规范**：瑞士国际主义排版 + 固定 3:4 比例 + 6 套主题配色 + 内容超长自动分页。详见 [`references/info-card-design-spec.md`](references/info-card-design-spec.md)。
+
+<p align="center">
+  <img src="examples/example.png" alt="信息卡模板索引" width="600" />
+</p>
+
+> 包含封面页（3 种配色）、低/中/高密度内容页共 8 种模板。完整 HTML 源码见 [`examples/`](examples/) 目录，可用浏览器打开 [`examples/index.html`](examples/index.html) 预览全部样式。
+
 ## 核心能力
 
 | 能力 | 说明 | 实现 |
