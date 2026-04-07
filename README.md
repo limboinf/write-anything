@@ -187,19 +187,10 @@ Step 7  Daily Tracker 联动 → 回复用户（含编辑建议 + 飞轮提示�
 
 默认全自动。说"交互模式"可在选题/框架/配图处暂停确认。
 
-📌 **详细流程图和辅助功能说明**：[docs/pipeline-overview.md](docs/pipeline-overview.md)
+## 参考项目
 
-## Toolkit 独立使用
-
-```bash
-# SEO 关键词分析
-# 说"帮我分析这个关键词：XXX"，Agent 使用 references/seo-keyword-analysis.md 进行分析
-# 说"这个话题值不值得写：XXX"，同样触发关键词分析流程
-
-# 文章质量评审
-# 通过 Agent 读取 writing-guide.md +
-# writing-evaluation-phrases.md / structures.md / examples.md 执行，不再提供独立打分脚本
-```
+- https://github.com/oaker-io/wewrite
+- https://github.com/joeseesun/info-card-designer
 
 ## License
 
