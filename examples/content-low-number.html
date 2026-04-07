@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=540">
+  <title>Content · Low Density · Number</title>
+  <style>
+    @font-face {
+      font-family: 'TsangerJinKai';
+      src: url('/Users/limbo/work/github/write-anything/assets/TsangerJinKai02-W04.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: block;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .page {
+      position: relative;
+      width: 540px;
+      height: 720px;
+      background-color: #faf9f5;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 48px;
+    }
+
+    /* 噪点纹理 */
+    .page::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      pointer-events: none;
+    }
+
+    /* 所有内容层 z-index: 1 */
+    .deco-line,
+    .big-number,
+    .number-label,
+    .number-desc,
+    .page-num {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* 短装饰线 */
+    .deco-line {
+      width: 28px;
+      height: 2px;
+      background-color: #c96a4f;
+      margin-bottom: 32px;
+    }
+
+    /* 大数字 */
+    .big-number {
+      font-family: -apple-system, 'Helvetica Neue', sans-serif;
+      font-size: 130px;
+      font-weight: 800;
+      color: #c96a4f;
+      line-height: 1;
+    }
+
+    /* 数字标签 */
+    .number-label {
+      font-family: 'TsangerJinKai', serif;
+      font-size: 26px;
+      color: #666;
+      margin-top: 16px;
+      line-height: 1.5;
+    }
+
+    /* 数字描述 */
+    .number-desc {
+      font-family: 'TsangerJinKai', serif;
+      font-size: 24px;
+      color: #999;
+      margin-top: 12px;
+      line-height: 1.5;
+      max-width: 400px;
+      white-space: pre-line;
+    }
+
+    /* 页码 */
+    .page-num {
+      position: absolute;
+      bottom: 28px;
+      right: 36px;
+      font-family: -apple-system, 'Helvetica Neue', sans-serif;
+      font-size: 9px;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="deco-line"></div>
+    <div class="big-number">3.7×</div>
+    <p class="number-label">编程效率提升倍数</p>
+    <p class="number-desc">使用 AI 辅助编码的开发者
+任务完成速度是对照组的 3.7 倍</p>
+    <span class="page-num">02</span>
+  </div>
+</body>
+</html>

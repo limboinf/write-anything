@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=540">
+  <title>Content · High Density · Numbered</title>
+  <style>
+    @font-face {
+      font-family: 'TsangerJinKai';
+      src: url('/Users/limbo/work/github/write-anything/assets/TsangerJinKai02-W04.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: block;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .page {
+      position: relative;
+      width: 540px;
+      min-height: 720px;
+      max-height: 960px;
+      background-color: #faf9f5;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 40px 40px 48px;
+    }
+
+    /* 噪点纹理 */
+    .page::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      pointer-events: none;
+    }
+
+    /* 所有内容层 z-index: 1 */
+    .header,
+    .items,
+    .footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* 标题 */
+    .title {
+      font-family: 'TsangerJinKai', serif;
+      font-size: 28px;
+      font-weight: normal;
+      color: #1a1a1a;
+    }
+
+    /* 强调线 */
+    .accent-line {
+      height: 2px;
+      background: #c96a4f;
+      margin-top: 12px;
+      margin-bottom: 24px;
+    }
+
+    /* 列表容器 */
+    .items {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 每个条目 */
+    .item {
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+      padding: 16px 0;
+    }
+
+    .item + .item {
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    /* 序号 */
+    .item-number {
+      font-family: -apple-system, 'Helvetica Neue', sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: #c96a4f;
+      opacity: 0.7;
+      line-height: 1;
+      flex-shrink: 0;
+      width: 44px;
+    }
+
+    /* 内容区 */
+    .item-content {
+      flex: 1;
+    }
+
+    .item-title {
+      font-family: 'TsangerJinKai', serif;
+      font-size: 24px;
+      color: #1a1a1a;
+      line-height: 1.4;
+      margin-bottom: 6px;
+    }
+
+    .item-desc {
+      font-family: 'TsangerJinKai', serif;
+      font-size: 20px;
+      color: #888;
+      line-height: 1.6;
+    }
+
+    /* 页脚 */
+    .footer {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 16px;
+    }
+
+    .footer-source {
+      font-family: 'TsangerJinKai', serif;
+      font-size: 14px;
+      color: #bbb;
+    }
+
+    .footer-page {
+      font-family: -apple-system, 'Helvetica Neue', sans-serif;
+      font-size: 9px;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- 标题区 -->
+    <div class="header">
+      <h1 class="title">AI 重塑软件行业的五个信号</h1>
+      <div class="accent-line"></div>
+    </div>
+
+    <!-- 列表 -->
+    <div class="items">
+
+      <div class="item">
+        <span class="item-number">01</span>
+        <div class="item-content">
+          <p class="item-title">代码生成准确率突破 90%</p>
+          <p class="item-desc">主流 LLM 在标准 benchmark 上的代码通过率从 2024 年的 67% 跃升至 92%</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <span class="item-number">02</span>
+        <div class="item-content">
+          <p class="item-title">初级开发者招聘锐减</p>
+          <p class="item-desc">硅谷头部公司 2025 年校招名额平均缩减 40%，但高级岗位薪资上涨 25%</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <span class="item-number">03</span>
+        <div class="item-content">
+          <p class="item-title">自然语言成为新接口</p>
+          <p class="item-desc">Cursor、Windsurf 等 AI IDE 月活突破千万，传统 IDE 市场份额加速下滑</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <span class="item-number">04</span>
+        <div class="item-content">
+          <p class="item-title">测试和运维自动化</p>
+          <p class="item-desc">AI Agent 已能独立完成 80% 的单元测试编写和 CI/CD pipeline 维护</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <span class="item-number">05</span>
+        <div class="item-content">
+          <p class="item-title">全栈个体开发者崛起</p>
+          <p class="item-desc">一个人 + AI 能完成过去 5-10 人团队的工作量，indie hacker 数量翻倍</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer">
+      <span class="footer-source">来源：综合分析</span>
+      <span class="footer-page">04</span>
+    </div>
+
+  </div>
+</body>
+</html>

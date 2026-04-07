@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=540">
+  <title>Content · Mid Density · Narrative</title>
+  <style>
+    @font-face {
+      font-family: 'TsangerJinKai';
+      src: url('/Users/limbo/work/github/write-anything/assets/TsangerJinKai02-W04.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: block;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .page {
+      position: relative;
+      width: 540px;
+      min-height: 720px;
+      max-height: 960px;
+      background-color: #faf9f5;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 44px 40px 48px;
+    }
+
+    /* 噪点纹理 */
+    .page::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      pointer-events: none;
+    }
+
+    /* 所有内容层 z-index: 1 */
+    .section,
+    .divider,
+    .footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* section 头部 */
+    .section-header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .section-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: #c96a4f;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: 'TsangerJinKai', serif;
+      font-size: 30px;
+      font-weight: normal;
+      color: #1a1a1a;
+      line-height: 1.3;
+    }
+
+    /* section 正文 */
+    .section-body {
+      font-family: 'TsangerJinKai', serif;
+      font-size: 22px;
+      color: #555;
+      line-height: 1.75;
+      padding-left: 16px;
+    }
+
+    /* 分隔线 */
+    .divider {
+      height: 1px;
+      background: rgba(0, 0, 0, 0.06);
+      margin: 4px 0 24px;
+    }
+
+    /* 拉引语 */
+    .pull-quote {
+      border-left: 3px solid #c96a4f;
+      background: rgba(201, 106, 79, 0.05);
+      padding: 16px 20px;
+      margin: 8px 0 0 16px;
+      font-family: 'TsangerJinKai', serif;
+      font-size: 21px;
+      font-style: italic;
+      color: #333;
+      line-height: 1.7;
+    }
+
+    /* 页脚 */
+    .footer {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 16px;
+    }
+
+    .footer-source {
+      font-family: 'TsangerJinKai', serif;
+      font-size: 14px;
+      color: #bbb;
+    }
+
+    .footer-page {
+      font-family: -apple-system, 'Helvetica Neue', sans-serif;
+      font-size: 9px;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Section 1 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-dot"></div>
+        <h2 class="section-title">代码不再是门槛</h2>
+      </div>
+      <p class="section-body">AI 将编程从「精确操控」变成「意图表达」。开发者不再逐行编码，而是描述需求，让模型生成实现。这不是效率提升，是范式转换。</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Section 2 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-dot"></div>
+        <h2 class="section-title">初级岗位首当其冲</h2>
+      </div>
+      <p class="section-body">传统软件公司 50% 的人力投入在「把设计翻译成代码」这一步。当 AI 能直接完成翻译，这些岗位将在 3-5 年内大幅缩减。</p>
+      <blockquote class="pull-quote">未来三年，初级程序员的需求将减少 70%，但高级架构师的需求会翻倍。</blockquote>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Section 3 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-dot"></div>
+        <h2 class="section-title">新的核心能力</h2>
+      </div>
+      <p class="section-body">系统设计、需求拆解、质量判断——这些「不写代码」的能力反而成为最稀缺的技能。懂业务的人比懂语法的人更值钱。</p>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer">
+      <span class="footer-source">来源：Anthropic 研究报告</span>
+      <span class="footer-page">03</span>
+    </div>
+
+  </div>
+</body>
+</html>

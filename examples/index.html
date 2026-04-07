@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>信息卡模板索引</title>
+<style>
+@font-face {
+  font-family: 'TsangerJinKai';
+  src: url('/Users/limbo/work/github/write-anything/assets/TsangerJinKai02-W04.ttf') format('truetype');
+  font-weight: normal; font-style: normal; font-display: block;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, 'Helvetica Neue', sans-serif;
+  background: #0e0e0e; color: #fff; padding: 48px 32px;
+}
+h1 {
+  font-family: 'TsangerJinKai', serif;
+  font-size: 28px; font-weight: normal; text-align: center; margin-bottom: 8px;
+}
+.page-sub { color: #666; font-size: 13px; text-align: center; margin-bottom: 48px; }
+
+h2 {
+  font-family: 'TsangerJinKai', serif;
+  font-size: 20px; font-weight: normal; color: #aaa;
+  margin: 40px 0 20px; padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+h2:first-of-type { margin-top: 0; }
+
+.grid { display: flex; gap: 28px; flex-wrap: wrap; justify-content: center; }
+
+.card-link {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  text-decoration: none;
+}
+.card-frame {
+  width: 216px; height: 288px;
+  border: 1px solid rgba(255,255,255,0.08); border-radius: 6px;
+  overflow: hidden; background: #1a1a1a;
+}
+.card-frame iframe {
+  width: 540px; height: 720px;
+  transform: scale(0.4); transform-origin: top left;
+  border: none; pointer-events: none;
+}
+.card-name { font-size: 13px; color: #bbb; }
+.card-desc { font-size: 11px; color: #555; max-width: 216px; text-align: center; line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<h1>信息卡模板索引</h1>
+<p class="page-sub">封面 + 三密度内容页 · 540×720 CSS · 2x 输出 1080×1440</p>
+
+<h2>封面页</h2>
+<div class="grid">
+  <a class="card-link" href="cover-terracotta.html">
+    <div class="card-frame"><iframe src="cover-terracotta.html"></iframe></div>
+    <div class="card-name">赤陶 · 弧形光环</div>
+    <div class="card-desc">科技 / AI / 通用</div>
+  </a>
+  <a class="card-link" href="cover-charcoal.html">
+    <div class="card-frame"><iframe src="cover-charcoal.html"></iframe></div>
+    <div class="card-name">暖炭 · 点阵网格（数字变体）</div>
+    <div class="card-desc">警示 / 数据 / 严肃</div>
+  </a>
+  <a class="card-link" href="cover-sand.html">
+    <div class="card-frame"><iframe src="cover-sand.html"></iframe></div>
+    <div class="card-name">暖沙 · 几何切割</div>
+    <div class="card-desc">商业 / 财经 / 深度</div>
+  </a>
+</div>
+
+<h2>低密度内容页</h2>
+<div class="grid">
+  <a class="card-link" href="content-low-quote.html">
+    <div class="card-frame"><iframe src="content-low-quote.html"></iframe></div>
+    <div class="card-name">金句型</div>
+    <div class="card-desc">居中引用 · 大量留白</div>
+  </a>
+  <a class="card-link" href="content-low-number.html">
+    <div class="card-frame"><iframe src="content-low-number.html"></iframe></div>
+    <div class="card-name">数字型</div>
+    <div class="card-desc">核心数据 · 视觉冲击</div>
+  </a>
+</div>
+
+<h2>中密度内容页</h2>
+<div class="grid">
+  <a class="card-link" href="content-mid-narrative.html">
+    <div class="card-frame"><iframe src="content-mid-narrative.html"></iframe></div>
+    <div class="card-name">叙事流</div>
+    <div class="card-desc">圆点标记 · 引用块 · 节奏阅读</div>
+  </a>
+</div>
+
+<h2>高密度内容页</h2>
+<div class="grid">
+  <a class="card-link" href="content-high-numbered.html">
+    <div class="card-frame"><iframe src="content-high-numbered.html"></iframe></div>
+    <div class="card-name">编号列表型</div>
+    <div class="card-desc">编号 + 标题 + 描述 · 紧凑有序</div>
+  </a>
+  <a class="card-link" href="content-high-tagged.html">
+    <div class="card-frame"><iframe src="content-high-tagged.html"></iframe></div>
+    <div class="card-name">标签交替型</div>
+    <div class="card-desc">分类标签 · 奇偶交替底色</div>
+  </a>
+</div>
+
+</body>
+</html>

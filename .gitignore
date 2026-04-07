@@ -1,0 +1,45 @@
+# Credentials
+config.yaml
+
+# User data (generated at runtime, not tracked)
+corpus/
+
+# Personal writing style (user-specific)
+my-style/
+
+
+
+# Daily content tracker (user-specific)
+daily/
+
+# Generated output
+output/
+!output/.gitkeep
+
+
+# Legacy client directories
+clients/
+
+# Font assets (too large for git, user copies locally)
+assets/
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Internal dev docs
+docs/
+CLAUDE.md
+
+# IDE
+.vscode/
+.idea/
+.venv/
+.factory/

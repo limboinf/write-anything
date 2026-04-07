@@ -1,0 +1,43 @@
+# 平台参数表（Agent 速查表）
+# 供 SKILL.md 管道读取，按 platform 字段选择对应平台参数
+# 本文件不被任何 Python 脚本解析，仅供 Agent 读取后在命令行中填入对应值
+# SEO 规则文件统一按 seo-rules-{platform}.md 命名，无需单独配置
+
+toutiao:
+  display_name: "今日头条"
+  title_max_chars: 30
+  title_min_chars: 5
+  digest_max_chars: 120
+  word_count_min: 800
+  word_count_max: 3000
+  cover_aspect: "16:9"
+  cover_size_preset: "article"
+  article_image_preset: "article"
+  max_images: 20
+  tags_count: 5
+
+xiaohongshu:
+  display_name: "小红书"
+  title_max_chars: 20
+  title_min_chars: 2
+  digest_max_chars: null
+  word_count_min: 200
+  word_count_max: 1000
+  cover_aspect: "3:4"
+  cover_size_preset: "vertical"
+  article_image_preset: "vertical"
+  max_images: 9
+  tags_count: 8
+
+twitter:
+  display_name: "Twitter"
+  title_max_chars: 60
+  title_min_chars: 5
+  digest_max_chars: null
+  word_count_min: 40
+  word_count_max: 260
+  cover_aspect: "16:9"
+  cover_size_preset: "article"
+  article_image_preset: "article"
+  max_images: 1
+  tags_count: 2

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=540">
+  <title>Cover · Sand</title>
+  <style>
+    @font-face {
+      font-family: 'TsangerJinKai';
+      src: url('/Users/limbo/work/github/write-anything/assets/TsangerJinKai02-W04.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .cover {
+      position: relative;
+      width: 540px;
+      height: 720px;
+      background-color: #a68b6b;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 40px;
+    }
+
+    /* 噪点纹理 */
+    .cover::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      pointer-events: none;
+    }
+
+    /* 左上角三角形切割 */
+    .triangle {
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 260px solid rgba(255,255,255,0.04);
+      border-bottom: 360px solid transparent;
+      pointer-events: none;
+    }
+
+    /* 水平线 — 25% */
+    .h-line-1 {
+      position: absolute;
+      z-index: 1;
+      top: 25%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background-color: rgba(255,255,255,0.12);
+      pointer-events: none;
+    }
+
+    /* 水平线 — 75% */
+    .h-line-2 {
+      position: absolute;
+      z-index: 1;
+      top: 75%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background-color: rgba(255,255,255,0.12);
+      pointer-events: none;
+    }
+
+    /* 右下角菱形 */
+    .diamond {
+      position: absolute;
+      z-index: 1;
+      bottom: 48px;
+      right: 48px;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(255,255,255,0.2);
+      transform: rotate(45deg);
+      pointer-events: none;
+    }
+
+    /* 内容区 */
+    .content {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+    }
+
+    .title {
+      font-family: 'TsangerJinKai', serif;
+      font-size: 58px;
+      font-weight: normal;
+      line-height: 1.24;
+      color: #ffffff;
+      letter-spacing: 0.03em;
+      white-space: pre-line;
+    }
+
+    .sep {
+      width: 32px;
+      height: 1.5px;
+      background-color: rgba(255,255,255,0.3);
+      margin: 24px auto;
+    }
+
+    .subtitle {
+      font-family: 'TsangerJinKai', serif;
+      font-size: 23px;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.01em;
+    }
+
+    .masthead {
+      font-family: -apple-system, 'Helvetica Neue', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="cover">
+    <!-- 几何切割 -->
+    <div class="triangle"></div>
+    <div class="h-line-1"></div>
+    <div class="h-line-2"></div>
+    <div class="diamond"></div>
+
+    <!-- 主内容 -->
+    <div class="content">
+      <h1 class="title">200 家机器人公司
+几乎全部
+没有收入</h1>
+      <div class="sep"></div>
+      <p class="subtitle">具身智能泡沫深度调查</p>
+      <p class="masthead">write-anything · 观察</p>
+    </div>
+  </div>
+</body>
+</html>

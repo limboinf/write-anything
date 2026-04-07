@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=540">
+  <title>Content · High Density · Tagged</title>
+  <style>
+    @font-face {
+      font-family: 'TsangerJinKai';
+      src: url('/Users/limbo/work/github/write-anything/assets/TsangerJinKai02-W04.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: block;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .page {
+      position: relative;
+      width: 540px;
+      min-height: 720px;
+      max-height: 960px;
+      background-color: #faf9f5;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 40px 0 48px;
+    }
+
+    /* 噪点纹理 */
+    .page::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      pointer-events: none;
+    }
+
+    /* 所有内容层 z-index: 1 */
+    .header,
+    .items,
+    .footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* 标题区 */
+    .header {
+      padding: 0 40px;
+    }
+
+    .title {
+      font-family: 'TsangerJinKai', serif;
+      font-size: 28px;
+      font-weight: normal;
+      color: #1a1a1a;
+    }
+
+    /* 强调线（橄榄绿） */
+    .accent-line {
+      height: 2px;
+      background: #5c7a5e;
+      margin: 12px 40px 0;
+    }
+
+    /* 列表容器 */
+    .items {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 20px;
+    }
+
+    /* 每个条目 */
+    .item {
+      padding: 18px 40px;
+    }
+
+    .item:nth-child(odd) {
+      background: rgba(0, 0, 0, 0.025);
+    }
+
+    .item:nth-child(even) {
+      background: transparent;
+    }
+
+    /* 标签 */
+    .item-tag {
+      font-family: -apple-system, 'Helvetica Neue', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #5c7a5e;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    /* 标题 */
+    .item-title {
+      font-family: 'TsangerJinKai', serif;
+      font-size: 23px;
+      color: #1a1a1a;
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+
+    /* 描述 */
+    .item-desc {
+      font-family: 'TsangerJinKai', serif;
+      font-size: 19px;
+      color: #888;
+      line-height: 1.6;
+    }
+
+    /* 页脚 */
+    .footer {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 40px 0;
+    }
+
+    .footer-source {
+      font-family: 'TsangerJinKai', serif;
+      font-size: 14px;
+      color: #bbb;
+    }
+
+    .footer-page {
+      font-family: -apple-system, 'Helvetica Neue', sans-serif;
+      font-size: 9px;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- 标题区 -->
+    <div class="header">
+      <h1 class="title">本周 AI 圈大事记</h1>
+    </div>
+    <div class="accent-line"></div>
+
+    <!-- 列表 -->
+    <div class="items">
+
+      <div class="item">
+        <p class="item-tag">模型发布</p>
+        <p class="item-title">Claude 4 正式发布</p>
+        <p class="item-desc">推理能力大幅提升，支持 100 万 token 上下文</p>
+      </div>
+
+      <div class="item">
+        <p class="item-tag">开源动态</p>
+        <p class="item-title">Llama 4 Scout 开源</p>
+        <p class="item-desc">Meta 发布多模态开源模型，性能对标 GPT-4o</p>
+      </div>
+
+      <div class="item">
+        <p class="item-tag">行业趋势</p>
+        <p class="item-title">AI 编程工具月活破千万</p>
+        <p class="item-desc">Cursor 单月新增 300 万用户，传统 IDE 市场加速萎缩</p>
+      </div>
+
+      <div class="item">
+        <p class="item-tag">投融资</p>
+        <p class="item-title">Anthropic 完成 50 亿融资</p>
+        <p class="item-desc">估值 600 亿美元，成为 AI 领域第二大独角兽</p>
+      </div>
+
+      <div class="item">
+        <p class="item-tag">政策监管</p>
+        <p class="item-title">欧盟 AI Act 正式生效</p>
+        <p class="item-desc">高风险 AI 系统需在 6 个月内完成合规审计</p>
+      </div>
+
+      <div class="item">
+        <p class="item-tag">应用落地</p>
+        <p class="item-title">AI Agent 进入企业生产环境</p>
+        <p class="item-desc">多家 Fortune 500 企业部署 AI Agent 处理客服和数据分析</p>
+      </div>
+
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer">
+      <span class="footer-source">write-anything 周报</span>
+      <span class="footer-page">05</span>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=540">
+  <title>Content · Low Density · Quote</title>
+  <style>
+    @font-face {
+      font-family: 'TsangerJinKai';
+      src: url('/Users/limbo/work/github/write-anything/assets/TsangerJinKai02-W04.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: block;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .page {
+      position: relative;
+      width: 540px;
+      height: 720px;
+      background-color: #faf9f5;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 48px;
+    }
+
+    /* 噪点纹理 */
+    .page::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      pointer-events: none;
+    }
+
+    /* 所有内容层 z-index: 1 */
+    .deco-line,
+    .quote-mark,
+    .quote-text,
+    .quote-source,
+    .page-num {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* 短装饰线 */
+    .deco-line {
+      width: 28px;
+      height: 2px;
+      background-color: #c96a4f;
+      margin-bottom: 28px;
+    }
+
+    /* 引号 */
+    .quote-mark {
+      font-family: Georgia, serif;
+      font-size: 48px;
+      color: #c96a4f;
+      opacity: 0.15;
+      margin-bottom: 8px;
+      line-height: 1;
+    }
+
+    /* 引言正文 */
+    .quote-text {
+      font-family: 'TsangerJinKai', serif;
+      font-size: 38px;
+      font-style: italic;
+      line-height: 1.6;
+      color: #1a1a1a;
+      max-width: 420px;
+      white-space: pre-line;
+    }
+
+    /* 来源 */
+    .quote-source {
+      font-family: 'TsangerJinKai', serif;
+      font-size: 20px;
+      color: #999;
+      margin-top: 24px;
+    }
+
+    /* 页码 */
+    .page-num {
+      position: absolute;
+      bottom: 28px;
+      right: 36px;
+      font-family: -apple-system, 'Helvetica Neue', sans-serif;
+      font-size: 9px;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="deco-line"></div>
+    <div class="quote-mark">"</div>
+    <p class="quote-text">编程的未来不是写代码，
+而是描述意图</p>
+    <p class="quote-source">— Dario Amodei, Anthropic CEO</p>
+    <span class="page-num">02</span>
+  </div>
+</body>
+</html>

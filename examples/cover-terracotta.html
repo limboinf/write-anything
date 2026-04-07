@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=540">
+  <title>Cover · Terracotta</title>
+  <style>
+    @font-face {
+      font-family: 'TsangerJinKai';
+      src: url('/Users/limbo/work/github/write-anything/assets/TsangerJinKai02-W04.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .cover {
+      position: relative;
+      width: 540px;
+      height: 720px;
+      background-color: #c96a4f;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 40px;
+    }
+
+    /* 噪点纹理 */
+    .cover::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      pointer-events: none;
+    }
+
+    /* 渐变叠加 */
+    .gradient-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(160deg, rgba(255,255,255,0.06) 0%, transparent 50%, rgba(0,0,0,0.1) 100%);
+      pointer-events: none;
+    }
+
+    /* 大弧形圆环 — 右上角 */
+    .ring-large {
+      position: absolute;
+      z-index: 1;
+      width: 420px;
+      height: 420px;
+      top: -160px;
+      right: -130px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,0.1);
+      pointer-events: none;
+    }
+
+    /* 小弧形圆环 — 左下角 */
+    .ring-small {
+      position: absolute;
+      z-index: 1;
+      width: 200px;
+      height: 200px;
+      bottom: -50px;
+      left: -60px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.07);
+      pointer-events: none;
+    }
+
+    /* 内容区 */
+    .content {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+    }
+
+    .title {
+      font-family: 'TsangerJinKai', serif;
+      font-size: 58px;
+      font-weight: normal;
+      line-height: 1.24;
+      color: #ffffff;
+      letter-spacing: 0.03em;
+      white-space: pre-line;
+    }
+
+    .sep {
+      width: 32px;
+      height: 1.5px;
+      background-color: rgba(255,255,255,0.3);
+      margin: 24px auto;
+    }
+
+    .subtitle {
+      font-family: 'TsangerJinKai', serif;
+      font-size: 23px;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.01em;
+    }
+
+    .masthead {
+      font-family: -apple-system, 'Helvetica Neue', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="cover">
+    <!-- 渐变叠加 -->
+    <div class="gradient-overlay"></div>
+
+    <!-- 几何装饰 -->
+    <div class="ring-large"></div>
+    <div class="ring-small"></div>
+
+    <!-- 主内容 -->
+    <div class="content">
+      <h1 class="title">Claude 4 发布
+改变了什么</h1>
+      <div class="sep"></div>
+      <p class="subtitle">从「对话工具」到「思维伙伴」的跨越</p>
+      <p class="masthead">write-anything · 深度</p>
+    </div>
+  </div>
+</body>
+</html>
