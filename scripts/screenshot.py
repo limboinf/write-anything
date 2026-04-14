@@ -35,6 +35,26 @@ def screenshot(html_path, output_path, width=540, scale=2, wait_ms=2000):
         )
         page.goto(f"file://{html_path}")
         page.wait_for_timeout(wait_ms)  # font rendering settle
+
+        # Detect overflow: if content is clipped by fixed height + overflow:hidden,
+        # temporarily remove constraints so full_page captures everything.
+        overflow_fixed = page.evaluate("""() => {
+            let fixed = false;
+            document.querySelectorAll('*').forEach(el => {
+                const style = getComputedStyle(el);
+                if (style.overflow === 'hidden' && el.scrollHeight > el.clientHeight + 2) {
+                    el.style.overflow = 'visible';
+                    el.style.height = 'auto';
+                    el.style.minHeight = el.style.minHeight || 'auto';
+                    fixed = true;
+                }
+            });
+            return fixed;
+        }""")
+        if overflow_fixed:
+            page.wait_for_timeout(200)  # re-layout settle
+            print(f"  Warning: content overflows fixed container, expanded for full capture", file=sys.stderr)
+
         page.screenshot(path=output_path, full_page=True)
         browser.close()
 
