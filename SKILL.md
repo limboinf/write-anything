@@ -185,9 +185,25 @@ python3 -c "import markdown, bs4, cssutils, requests, yaml, pygments, PIL" 2>&1
 1. **素材**：5-8 条真实素材（具名来源 + 具体数据/引述/案例）。**禁止编造**。
 2. **增强材料**：按 content-enhance.md 对应策略的要求提取（角度/密度要点/细节/用户声音）。
 
-两者并入框架大纲，一起传入 Step 3 写作。
+两者并入框架大纲，一起传入 Step 2.3。
 
 **降级**：WebSearch 不可用 → 用 LLM 训练数据中可验证的公开信息。但需告知用户："素材采集未能使用 WebSearch，建议在编辑锚点处多加入你自己的内容。"密度强化不依赖搜索，始终执行。
+
+**2.3 大纲生成与确认**（仅写文章类任务，如头条 / 小红书长文）：
+
+基于 2.1 框架和 2.2 素材，生成**结构化大纲 + 简短摘要**，包含：
+- **摘要**：1-2 句话概括文章核心观点和目标读者收益
+- **大纲**：各章节标题 + 每节要点（含将嵌入的素材/增强材料标注）
+
+生成后**必须询问用户**：
+> 以下是大纲和摘要，请确认是否 OK，或告诉我需要调整的部分：
+>
+> {大纲 + 摘要}
+
+- 用户要求修改 → 按反馈调整大纲，再次确认，直到用户明确同意
+- 用户确认 OK → 进入 Step 3 写作
+
+> **跳过条件**：Twitter 等短文本平台不执行此步，直接进入 Step 3。
 
 ---
 
@@ -209,7 +225,7 @@ python3 -c "import markdown, bs4, cssutils, requests, yaml, pygments, PIL" 2>&1
 **Fallback（风格文件为空或不存在时）**：仅依据 writing-guide.md 写作，不注入额外风格。
 
 **3.2 写文章**：
-- **头条 / 小红书**：H1 标题（≤ `platform_profile.title_max_chars` 字） + 正文结构（按 `platform-writing-rules.md` 当前平台规则执行），字数 `platform_profile.word_count_min` - `platform_profile.word_count_max`
+- **头条 / 小红书**：按 Step 2.3 确认的大纲逐节展开。展开时**优先通过 WebSearch 搜索每节要点对应的素材和内容**进行填充，确保信息密度和准确性。H1 标题（≤ `platform_profile.title_max_chars` 字） + 正文结构（按 `platform-writing-rules.md` 当前平台规则执行），字数 `platform_profile.word_count_min` - `platform_profile.word_count_max`
 - **Twitter**：不写 H1，直接输出单条短推正文。要求：总长度 `platform_profile.word_count_min` - `platform_profile.word_count_max` 字；3-6 句短句/短行；只保留 1 个核心观点、1 个核心画面或 1 个核心吐槽；默认不拆线程
 - **素材 + 增强约束**：头条 / 小红书把 Step 2.2 的素材和增强材料分散嵌入各段落；Twitter 至少包含 1 个真实锚点（具体产品名、功能名、数字或事件），增强策略的核心输出必须在单条短推里可感知，不能只剩空情绪
 - **收尾方式**：根据文章内容和情绪弧线自行判断最自然的收尾方式
@@ -220,6 +236,16 @@ python3 -c "import markdown, bs4, cssutils, requests, yaml, pygments, PIL" 2>&1
 - 可选容器语法（仅长文平台）：`:::dialogue`、`:::timeline`、`:::callout`、`:::quote`
 
 保存到 `{skill_dir}/output/{date}-{slug}.md`
+
+**3.3 整体审核**（仅写文章类任务，如头条 / 小红书长文）：
+
+填充完成后对全文做一遍整体审核：
+- 检查各节是否覆盖大纲所有要点
+- 检查素材/数据引用的准确性和一致性
+- 检查段落衔接和逻辑连贯性
+- 检查字数是否在平台要求范围内
+
+审核通过后进入 Step 4 SEO 流程。
 
 ---
 
